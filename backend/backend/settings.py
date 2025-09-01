@@ -89,13 +89,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'linkcm',
-        'USER': 'gabana',
-        'PASSWORD': 'gabana',
-        'HOST': 'localhost',  # or your db host
-        'PORT': '5432',
+        'NAME': 'postgres',
+        'USER': 'postgres.gaudohxmwkdqodwhxasn',
+        'PASSWORD': 'Alexender55#',
+        'HOST': 'aws-1-eu-north-1.pooler.supabase.com',
+        'PORT': '6543',
         'OPTIONS': {
             'client_encoding': 'UTF8',
+            'sslmode': 'require',
         },
     }
 }
