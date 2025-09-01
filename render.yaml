@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: gas-monitor-backend
+    env: python
+    region: frankfurt
+    plan: free
+    rootDir: backend
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+      python manage.py migrate --noinput
+    startCommand: |
+      gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --timeout 120
+    autoDeploy: true
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: backend.settings
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      # Database and secrets should be set in Render dashboard or here as env vars
+      # - key: DATABASE_URL
+      #   value: postgres://USER:PASSWORD@HOST:PORT/DB
+      # - key: SECRET_KEY
+      #   generateValue: true
